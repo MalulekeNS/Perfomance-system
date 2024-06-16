@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>NLSA PERFORMANCE MANAGEMENT SYSTEM</title>
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.webp" rel="icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            font-size: 20px;
+            text-align: center;
+            width:100%;
+            margin-bottom: 10px;
+            background-color:rgb(30, 176, 30);
+            padding: 12px;
+            font-weight:bold;
+            color:black;
+        }
+
+        header h3{padding-left:2%;}
+
+        nav {
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .inbox {
+            width: 70%;
+            margin: auto;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 14px;
+            background-color: #f1f1f1;
+        }
+
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #333;
+            z-index: 1000;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h3>Electronic Quarterly Performance Reporting System (EQPRS)</h3>
+    </header>
+
+    <nav>
+        <div class="buttons">
+            <button onclick="showApp()">App</button>
+            <button onclick="showUserManager()">User Manager</button>
+            <button onclick="showScheduleCalendar()">Schedule Calendar</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="inbox">
+            <h2>Quarter Task Inbox</h2>
+            <form onsubmit="openQuarterTaskPage(); return false;">
+                <label for="quarter">Select Quarter:</label>
+                <select id="quarter" name="quarter">
+                    <option value="q1">Quarter 1</option>
+                    <option value="q2">Quarter 2</option>
+                    <option value="q3">Quarter 3</option>
+                    <option value="q4">Quarter 4</option>
+                </select>
+                <button type="submit">OK</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Pop-up Form -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup-form" id="popupForm">
+        <h3>Select or Create Program</h3>
+        <button onclick="showAvailablePrograms()">Select Program</button>
+        <button onclick="showCreateProgramForm()">Create Program</button>
+
+        <!-- Available Programs List -->
+        <div id="availablePrograms" style="display: none;">
+            <label for="programSelect">Select Program:</label>
+            <select id="programSelect" onchange="enableDeleteButton()"></select>
+            <br>
+            <!--<button onclick="selectProgram()">OK</button>-->
+            <!--Linking Button to Another Page-->
+            <a href="status.html"><button onclick="selectProgram()">OK</button></a>
+            <button id="deleteProgramButton" onclick="deleteProgram()" disabled>Delete Program</button>
+        </div>
+
+        <!-- Create Program Form -->
+        <div id="createProgramForm" style="display: none;">
+            <label for="newProgram">Enter New Program:</label>
+            <input type="text" id="newProgram">
+            <br>
+            <button onclick="createProgram()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample array of available programs
+        var availablePrograms = ["Program A", "Program B", "Program C"];
+
+        function showApp() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popupForm').style.display = 'block';
+        }
+
+        function showAvailablePrograms() {
+            document.getElementById('availablePrograms').style.display = 'block';
+            document.getElementById('createProgramForm').style.display = 'none';
+            document.getElementById('deleteProgramButton').disabled = true;
+
+            // Populate the select dropdown with available programs
+            var programSelect = document.getElementById('programSelect');
+            programSelect.innerHTML = '';
+
+            availablePrograms.forEach(function (program) {
+                var option = document.createElement('option');
+                option.value = program;
+                option.text = program;
+                programSelect.add(option);
+            });
+        }
+
+        function showCreateProgramForm() {
+            document.getElementById('createProgramForm').style.display = 'block';
+            document.getElementById('availablePrograms').style.display = 'none';
+        }
+
+        function enableDeleteButton() {
+            document.getElementById('deleteProgramButton').disabled = false;
+        }
+
+        function selectProgram() {
+            var selectedProgram = document.getElementById('programSelect').value;
+            alert('Selected Program: ' + selectedProgram);
+            closePopup();
+        }
+
+        function createProgram() {
+            var newProgram = document.getElementById('newProgram').value;
+            if (newProgram.trim() !== "") {
+                availablePrograms.push(newProgram);
+                alert('Program created: ' + newProgram);
+                closePopup();
+            } else {
+                alert('Please enter a program name.');
+            }
+        }
+
+        function deleteProgram() {
+            var selectedProgram = document.getElementById('programSelect').value;
+            var index = availablePrograms.indexOf(selectedProgram);
+            if (index !== -1) {
+                availablePrograms.splice(index, 1);
+                alert('Program deleted: ' + selectedProgram);
+                closePopup();
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popupForm').style.display = 'none';
+            document.getElementById('availablePrograms').style.display = 'none';
+            document.getElementById('createProgramForm').style.display = 'none';
+        }
+
+        function showUserManager() {
+            alert('Show User Manager Content');
+        }
+
+        function showScheduleCalendar() {
+            alert('Show Schedule Calendar Content');
+        }
+
+        function openQuarterTaskPage() {
+            var selectedQuarter = document.getElementById("quarter").value;
+            window.open("quarter_task.html?quarter=" + selectedQuarter, "_blank");
+        }
+    </script>
+
+</body>
+
+</html>

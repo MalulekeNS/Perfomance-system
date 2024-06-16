@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.webp" rel="icon">
+
+  <title>Quarter Task</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color:rgb(30, 176, 30);
+      padding: 10px;
+      color:black;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 20px auto;
+      max-width: 600px;
+      position: relative;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    .next-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .side-buttons {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Task Details</h1>
+  </header>
+
+  <div class="side-buttons">
+    <button onclick="publishDocuments()">Publish</button>
+  </div>
+
+  <main>
+    <h2>Republic of South Africa</h2>
+
+    <p><strong>Quarter:</strong> Q1 FY 2023-01</p>
+    <p><strong>Start Date:</strong> 2024-04-01</p>
+    <p><strong>End Date:</strong> 2024-06-30</p>
+    <p><strong>Status:</strong> Complete</p>
+
+    <!--<button class="next-button">Next</button>-->
+    <!--Linking Button to Another Page-->
+    <a href="dataForm.html"><button class="next-button">Next</button></a>
+  </main>
+
+  <script>
+    function downloadDocuments() {
+      alert('Downloading documents...');
+      // Add logic to handle document download
+    }
+
+    function publishDocuments() {
+      alert('Publishing documents...');
+      // Add logic to handle document publishing
+    }
+  </script>
+
+</body>
+
+</html>
