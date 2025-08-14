@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.webp" rel="icon">
-
-  <title>Quarter Task</title>
-
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <script src="app.js"></script>
+    <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -60,42 +55,20 @@
     }
   </style>
 </head>
-
 <body>
-
-  <header>
-    <h1>Task Details</h1>
-  </header>
-
-  <div class="side-buttons">
-    <button onclick="publishDocuments()">Publish</button>
-  </div>
-
-  <main>
-    <h2>Republic of South Africa</h2>
-
-    <p><strong>Quarter:</strong> Q1 FY 2023-01</p>
-    <p><strong>Start Date:</strong> 2024-04-01</p>
-    <p><strong>End Date:</strong> 2024-06-30</p>
-    <p><strong>Status:</strong> Complete</p>
-
-    <!--<button class="next-button">Next</button>-->
-    <!--Linking Button to Another Page-->
-    <a href="dataForm.html"><button class="next-button">Next</button></a>
-  </main>
-
-  <script>
-    function downloadDocuments() {
-      alert('Downloading documents...');
-      // Add logic to handle document download
-    }
-
-    function publishDocuments() {
-      alert('Publishing documents...');
-      // Add logic to handle document publishing
-    }
-  </script>
-
+    <header>
+        <h1>Task Details</h1>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Republic of South Africa</h2>
+            <p>Quarter: Q1 FY 2023-01</p>
+            <p>Start Date: 2024-04-01</p>
+            <p>End Date: 2024-06-30</p>
+            <p>Status: Complete</p>
+            <button onclick="navigateTo('App.html')">Next</button>
+        </section>
+    </main>
 </body>
-
 </html>

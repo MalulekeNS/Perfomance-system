@@ -1,44 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/myStyle.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Login Page</title>
-    <!-- Favicons -->
-    <link href="assets/img/favicon.webp" rel="icon">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Quarterly Performance Reporting System (EQPRS)</title>
+    <script src="app.js"></script>
 </head>
-
 <body>
-     <div class="logo-pic">
-      <img src="assets/img/NLSA-logo.png" style="width:30%; height:30%">
-      <h3>Electronic Quarterly Performance Reporting System (EQPRS)</h3>
-     </div>
-    <div class="sid">
-       <div class="side-left">
-         <h4></h4>
-         <img src="assets/img/photo 5.png" style="width:90%; height: 90%;">
-       </div>
-       <div class="side-right">
-         <h4>SIGN IN</h4>
-          <form class="sub-form">
-            <label for="fname">Email Address:</label><br>
-            <input type="text" id="fname" name="fname"><br>
-            <label for="lname">Password:</label><br>
-            <input type="password" id="lname" name="password"><br><br>
-             <p><a href="forgot password.html">Forgot Password?</a></p>
-             <p><a href="register.html">New User? Create Account</a></p>
-            <input type ="submit" value="Log in" class="button1">
-            
-            
-          </form> 
-       </div>
-
-    </div>
-      
-
-
-  </body>
+    <header>
+        <h1>Electronic Quarterly Performance Reporting System (EQPRS)</h1>
+    </header>
+    
+    <main>
+        <section>
+            <h2>SIGN IN</h2>
+            <form id="loginForm">
+                <div>
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <a href="#" data-nav="forgot password.html">Forgot Password?</a>
+                    <a href="#" data-nav="register.html">New User? Create Account</a>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+        </section>
+    </main>
+</body>
 </html>

@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>NLSA PERFORMANCE MANAGEMENT SYSTEM</title>
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.webp" rel="icon">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Quarterly Performance Reporting System (EQPRS)</title>
+    <script src="app.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,147 +70,52 @@
         }
     </style>
 </head>
-
 <body>
-
     <header>
-        <h3>Electronic Quarterly Performance Reporting System (EQPRS)</h3>
+        <h1>Electronic Quarterly Performance Reporting System (EQPRS)</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-nav="App.html">App</a></li>
+                <li><a href="#" data-nav="App.html#user-manager">User Manager</a></li>
+                <li><a href="#" data-nav="App.html#schedule">Schedule Calendar</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <nav>
-        <div class="buttons">
-            <button onclick="showApp()">App</button>
-            <button onclick="showUserManager()">User Manager</button>
-            <button onclick="showScheduleCalendar()">Schedule Calendar</button>
-        </div>
-    </nav>
-
+    
     <main>
-        <div class="inbox">
+        <section>
             <h2>Quarter Task Inbox</h2>
-            <form onsubmit="openQuarterTaskPage(); return false;">
-                <label for="quarter">Select Quarter:</label>
-                <select id="quarter" name="quarter">
-                    <option value="q1">Quarter 1</option>
-                    <option value="q2">Quarter 2</option>
-                    <option value="q3">Quarter 3</option>
-                    <option value="q4">Quarter 4</option>
+            <form id="quarterForm">
+                <label for="quarterSelect">Select Quarter:</label>
+                <select id="quarterSelect" name="quarter">
+                    <option value="Quarter 1">Quarter 1</option>
+                    <option value="Quarter 2">Quarter 2</option>
+                    <option value="Quarter 3">Quarter 3</option>
+                    <option value="Quarter 4">Quarter 4</option>
                 </select>
                 <button type="submit">OK</button>
             </form>
-        </div>
+        </section>
+        
+        <section>
+            <h2>Select or Create Program</h2>
+            <form id="programForm">
+                <label for="programSelect">Select Program:</label>
+                <select id="programSelect" name="program">
+                    <option value="Administration">Administration</option>
+                    <option value="Business Development">Business Development</option>
+                    <option value="GRAP">GRAP</option>
+                </select>
+                <button type="submit">OK</button>
+                <button type="button" onclick="alert('Program deleted')">Delete Program</button>
+            </form>
+            
+            <form id="createProgramForm">
+                <label for="newProgram">Enter New Program:</label>
+                <input type="text" id="newProgram" name="newProgram" required>
+                <button type="submit">OK</button>
+            </form>
+        </section>
     </main>
-
-    <!-- Pop-up Form -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup-form" id="popupForm">
-        <h3>Select or Create Program</h3>
-        <button onclick="showAvailablePrograms()">Select Program</button>
-        <button onclick="showCreateProgramForm()">Create Program</button>
-
-        <!-- Available Programs List -->
-        <div id="availablePrograms" style="display: none;">
-            <label for="programSelect">Select Program:</label>
-            <select id="programSelect" onchange="enableDeleteButton()"></select>
-            <br>
-            <!--<button onclick="selectProgram()">OK</button>-->
-            <!--Linking Button to Another Page-->
-            <a href="status.html"><button onclick="selectProgram()">OK</button></a>
-            <button id="deleteProgramButton" onclick="deleteProgram()" disabled>Delete Program</button>
-        </div>
-
-        <!-- Create Program Form -->
-        <div id="createProgramForm" style="display: none;">
-            <label for="newProgram">Enter New Program:</label>
-            <input type="text" id="newProgram">
-            <br>
-            <button onclick="createProgram()">OK</button>
-        </div>
-    </div>
-
-    <script>
-        // Sample array of available programs
-        var availablePrograms = ["Program A", "Program B", "Program C"];
-
-        function showApp() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('popupForm').style.display = 'block';
-        }
-
-        function showAvailablePrograms() {
-            document.getElementById('availablePrograms').style.display = 'block';
-            document.getElementById('createProgramForm').style.display = 'none';
-            document.getElementById('deleteProgramButton').disabled = true;
-
-            // Populate the select dropdown with available programs
-            var programSelect = document.getElementById('programSelect');
-            programSelect.innerHTML = '';
-
-            availablePrograms.forEach(function (program) {
-                var option = document.createElement('option');
-                option.value = program;
-                option.text = program;
-                programSelect.add(option);
-            });
-        }
-
-        function showCreateProgramForm() {
-            document.getElementById('createProgramForm').style.display = 'block';
-            document.getElementById('availablePrograms').style.display = 'none';
-        }
-
-        function enableDeleteButton() {
-            document.getElementById('deleteProgramButton').disabled = false;
-        }
-
-        function selectProgram() {
-            var selectedProgram = document.getElementById('programSelect').value;
-            alert('Selected Program: ' + selectedProgram);
-            closePopup();
-        }
-
-        function createProgram() {
-            var newProgram = document.getElementById('newProgram').value;
-            if (newProgram.trim() !== "") {
-                availablePrograms.push(newProgram);
-                alert('Program created: ' + newProgram);
-                closePopup();
-            } else {
-                alert('Please enter a program name.');
-            }
-        }
-
-        function deleteProgram() {
-            var selectedProgram = document.getElementById('programSelect').value;
-            var index = availablePrograms.indexOf(selectedProgram);
-            if (index !== -1) {
-                availablePrograms.splice(index, 1);
-                alert('Program deleted: ' + selectedProgram);
-                closePopup();
-            }
-        }
-
-        function closePopup() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('popupForm').style.display = 'none';
-            document.getElementById('availablePrograms').style.display = 'none';
-            document.getElementById('createProgramForm').style.display = 'none';
-        }
-
-        function showUserManager() {
-            alert('Show User Manager Content');
-        }
-
-        function showScheduleCalendar() {
-            alert('Show Schedule Calendar Content');
-        }
-
-        function openQuarterTaskPage() {
-            var selectedQuarter = document.getElementById("quarter").value;
-            window.open("quarter_task.html?quarter=" + selectedQuarter, "_blank");
-        }
-    </script>
-
 </body>
-
 </html>

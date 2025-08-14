@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Favicons -->
-    <link href="assets/img/favicon.webp" rel="icon">
-
-    <title>NLSA Performance Management System</title>
+    <title>Electronic Quarterly Performance Reporting System (EQPRS)</title>
+    <script src="app.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -117,102 +113,49 @@
         .tabl1{margin-top:2%;}
     </style>
 </head>
-
 <body>
-
-    <div>
-        <div class="main-heading">
-            Electronic Quarterly Performance Reporting System (EQPRS)
-        </div>
-        <div class="sub-heading">QPR FY 2023-24 Q2 - National Library of South Africa ADMINISTRATION Communications, Marketing and Stakeholder Relations</div>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Indicator</th>
-                <th>Audited Output</th>
-                <th>Annual Target</th>
-                <th>Q1</th>
-                <th>Q2</th>
-                <th>Q3</th>
-                <th>Q4</th> <!-- Added Q4 column -->
-                <th>Comment Q1</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Table content remains the same -->
-            <tr>
-                <td>
-                    <div>1. Business Development</div>
-                    <div class="separator"></div>
-                    <div>2. Administration</div>
-                    <div class="separator"></div>
-                    <div>3. GRAP</div>
-                </td>
-                <td><input type="number" name="auditedOutput" min="1" max="10"></td>
-                <td><input type="number" name="annualTarget" min="1" max="10"></td>
-                <td>
-                    <table class="nested-table">
+    <header>
+        <h1>Electronic Quarterly Performance Reporting System (EQPRS)</h1>
+        <h2>QPR FY 2023-24 Q2 - National Library of South Africa ADMINISTRATION Communications, Marketing and Stakeholder Relations</h2>
+    </header>
+    
+    <main>
+        <section>
+            <form id="dataForm">
+                <table>
+                    <thead>
                         <tr>
-                            <th class="nested-th">Target</th>
-                            <th class="nested-th">Actual Output</th>
-                            <th class="nested-th">Reason for Deviation</th>
-                            <th class="nested-th">Corrective Action</th>
+                            <th>Indicator</th>
+                            <th>Audited Output</th>
+                            <th>Annual Target</th>
+                            <th>Q1</th>
+                            <th>Q2</th>
+                            <th>Q3</th>
+                            <th>Q4</th>
+                            <th>Comment Q1</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr>
-                            <td class="nested-td"><input type="number" name="nestedTarget" min="1" max="10"></td>
-                            <td class="nested-td"><input type="number" name="nestedActualOutput" min="1" max="10"></td>
-                            <td class="nested-td"><input type="text" name="nestedReason" size="15"></td>
-                            <td class="nested-td"><input type="text" name="nestedCorrectiveAction" size="15"></td>
+                            <td><input type="text" id="indicator" name="indicator"></td>
+                            <td><input type="text" id="auditedOutput" name="auditedOutput"></td>
+                            <td><input type="text" id="annualTarget" name="annualTarget"></td>
+                            <td><input type="text" id="q1" name="q1"></td>
+                            <td><input type="text" id="q2" name="q2"></td>
+                            <td><input type="text" id="q3" name="q3"></td>
+                            <td><input type="text" id="q4" name="q4"></td>
+                            <td><input type="text" id="comment" name="comment"></td>
                         </tr>
-                    </table>
-
-                <!--Upload file buttom-->
-                <div class="mb-3">
-                    <input class="form-control" type="file" id="formFile" style="margin-top:3%;">
+                    </tbody>
+                </table>
+                <div>
+                    <label for="entityCoordinator">Entity Coordinator:</label>
+                    <input type="text" id="entityCoordinator" name="entityCoordinator">
                 </div>
-                <!--End of Upload file-->
-                
-                </td>
-                <td><input type="number" name="q2" min="1" max="10"></td>
-                <td><input type="number" name="q3" min="1" max="10"></td>
-                <td><input type="number" name="q4" min="1" max="10"></td> <!-- Added Q4 column -->
-                <td>
-                    <table class="nested-table">
-                        <tr>
-                            <th class="nested-th">Entity Coordinator</th>
-                        </tr>
-                        <tr>
-                            <td class="nested-td"><input type="text" name="entityCoordinatorComment" size="15"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Pop-up Form -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup-form" id="popupForm">
-        <div class="popup-heading">
-            <h3>Select or Create Indicator</h3>
-        </div>
-        <button onclick="closePopup()">Cancel</button>
-    </div>
-
-    <script>
-        function openPopup() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('popupForm').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('popupForm').style.display = 'none';
-        }
-    </script>
-
+                <button type="submit">Submit</button>
+                <button type="button" onclick="navigateTo('App.html')">Cancel</button>
+            </form>
+        </section>
+    </main>
 </body>
-
 </html>
